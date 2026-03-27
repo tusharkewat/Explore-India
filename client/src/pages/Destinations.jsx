@@ -10,7 +10,7 @@ const Destinations = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialCategory = searchParams.get('category') || 'all';
   const initialSearch = searchParams.get('search') || '';
-  const initialBudget = searchParams.get('budget') ? Number(searchParams.get('budget')) : 20000;
+  const initialBudget = searchParams.get('budget') ? Number(searchParams.get('budget')) : 30000;
   
   const [activeTab, setActiveTab] = useState(initialCategory.toLowerCase());
   const [searchTerm, setSearchTerm] = useState(initialSearch);
@@ -33,7 +33,7 @@ const Destinations = () => {
       const matchCategory = activeTab === 'all' || dest.category.toLowerCase() === activeTab;
       const matchSearch = dest.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                           dest.state.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchBudget = dest.price <= maxBudget;
+      const matchBudget = maxBudget === 30000 || dest.price <= maxBudget;
       return matchCategory && matchSearch && matchBudget;
     });
   }, [activeTab, searchTerm, maxBudget]);
@@ -67,25 +67,29 @@ const Destinations = () => {
               })}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 items-center w-full md:w-auto mt-4 md:mt-0">
-              <div className="flex flex-col w-full min-w-[200px]">
-                <label className="text-sm text-gray-500 font-medium mb-2">Max Budget: ₹{maxBudget.toLocaleString('en-IN')}</label>
-                <input 
-                  type="range" 
-                  min="2000" 
-                  max="20000" 
-                  step="500"
+            <div className="flex flex-col sm:flex-row gap-4 items-center w-full md:w-auto mt-4 md:mt-0">
+              <div className="relative w-full sm:w-48">
+                <select 
                   value={maxBudget}
                   onChange={(e) => {
                     const val = Number(e.target.value);
                     setMaxBudget(val);
                     setSearchParams({ ...(activeTab !== 'all' && { category: activeTab }), ...(searchTerm && { search: searchTerm }), budget: val.toString() });
                   }}
-                  className="w-full accent-[#1BA98C]"
-                />
+                  className="w-full bg-white border-0 py-2.5 px-4 pr-10 rounded-full shadow-sm focus:ring-2 focus:ring-[#1BA98C] outline-none text-gray-700 font-medium cursor-pointer appearance-none"
+                >
+                  <option value="30000">Any Budget</option>
+                  <option value="5000">Below ₹5,000</option>
+                  <option value="10000">Below ₹10,000</option>
+                  <option value="15000">Below ₹15,000</option>
+                  <option value="20000">Below ₹20,000</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-400">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
               </div>
 
-              <div className="relative w-full md:w-auto min-w-[250px]">
+              <div className="relative w-full md:w-auto min-w-[280px]">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Search className="h-5 w-5 text-gray-400" />
                 </div>
@@ -116,7 +120,7 @@ const Destinations = () => {
             <h3 className="text-2xl font-['Playfair_Display'] text-gray-800 mb-2">No destinations found</h3>
             <p className="text-gray-500">Try adjusting your search criteria or changing the category tab.</p>
             <button 
-              onClick={() => { setActiveTab('all'); setSearchTerm(''); setMaxBudget(20000); setSearchParams({}); }}
+              onClick={() => { setActiveTab('all'); setSearchTerm(''); setMaxBudget(30000); setSearchParams({}); }}
               className="mt-6 text-[#1BA98C] font-semibold hover:underline"
             >
               Clear all filters

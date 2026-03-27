@@ -1,9 +1,21 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
 import { Globe } from 'lucide-react';
 
 const Navbar = () => {
   const { user, logout } = useAuthStore();
+  const location = useLocation();
+
+  const isActive = (path) => location.pathname === path;
+
+  const linkClass = (path) => `
+    relative py-2 font-medium transition-colors
+    ${isActive(path) ? 'text-[#1BA98C]' : 'text-gray-700 hover:text-[#1BA98C]'}
+  `;
+
+  const highlighter = (path) => isActive(path) && (
+    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#1BA98C] rounded-full scale-x-100 transition-transform origin-left"></span>
+  );
 
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -17,11 +29,28 @@ const Navbar = () => {
 
           {/* Nav Links */}
           <div className="hidden md:flex space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-[#1BA98C] font-medium transition-colors">Home</Link>
-            <Link to="/destinations" className="text-gray-700 hover:text-[#1BA98C] font-medium transition-colors">Destinations</Link>
-            <Link to="/stories" className="text-gray-700 hover:text-[#1BA98C] font-medium transition-colors">Travel Stories</Link>
-            <Link to="/wishlist" className="text-gray-700 hover:text-[#1BA98C] font-medium transition-colors">Wishlist</Link>
-            {user && <Link to="/my-bookings" className="text-gray-700 hover:text-[#1BA98C] font-medium transition-colors">My Bookings</Link>}
+            <Link to="/" className={linkClass('/')}>
+              Home
+              {highlighter('/')}
+            </Link>
+            <Link to="/destinations" className={linkClass('/destinations')}>
+              Destinations
+              {highlighter('/destinations')}
+            </Link>
+            <Link to="/stories" className={linkClass('/stories')}>
+              Travel Stories
+              {highlighter('/stories')}
+            </Link>
+            <Link to="/wishlist" className={linkClass('/wishlist')}>
+              Wishlist
+              {highlighter('/wishlist')}
+            </Link>
+            {user && (
+              <Link to="/my-bookings" className={linkClass('/my-bookings')}>
+                My Bookings
+                {highlighter('/my-bookings')}
+              </Link>
+            )}
           </div>
 
           {/* Auth Section */}
