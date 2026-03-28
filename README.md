@@ -92,19 +92,20 @@ npm run dev
 ---
 
 ## 📸 Key Sections
-🏠 Home Page
- - Hero section with search bar
- - Featured destinations
- - Category cards
-🌍 Destinations
- - Filter by category & budget
- - Beautiful destination cards
-📖 Travel Stories
- - Blog-style travel experiences
-❤️ Wishlist
- - Save and manage favorite places
-🔐 Authentication
- - Signup & Login UI
+- 🏠 Home Page
+  - Hero section with search bar
+  - Featured destinations
+  - Category cards
+- 🌍 Destinations
+  - Filter by category & budget
+  - Beautiful destination cards
+- 📖 Travel Stories
+  - Blog-style travel experiences
+- ❤️ Wishlist
+  - Save and manage favorite places
+- 🔐 Authentication
+  - Signup & Login UI
+---
 
 ##🔮 Future Improvements
 - 🔐 Full authentication system (JWT / OAuth)
@@ -120,9 +121,11 @@ If you like this project:
 
 👉 Give it a ⭐ on GitHub
 👉 Share with friends
+---
 
 ## 📌 License
 
 This project is licensed under the MIT License
+---
 
 ##💡 "Travel is the only thing you buy that makes you richer." ✈️
