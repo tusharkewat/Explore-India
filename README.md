@@ -107,7 +107,7 @@ npm run dev
   - Signup & Login UI
 ---
 
-##🔮 Future Improvements
+## 🔮 Future Improvements
 - 🔐 Full authentication system (JWT / OAuth)
 - 📍 Google Maps integration
 - 💳 Booking system
@@ -119,13 +119,14 @@ npm run dev
 
 If you like this project:
 
-👉 Give it a ⭐ on GitHub
-👉 Share with friends
+  👉 Give it a ⭐ on GitHub
+  👉 Share with friends
+  
 ---
-
 ## 📌 License
 
-This project is licensed under the MIT License
+  This project is licensed under the MIT License
+  
 ---
 
-##💡 "Travel is the only thing you buy that makes you richer." ✈️
+## 💡 "Travel is the only thing you buy that makes you richer." ✈️
