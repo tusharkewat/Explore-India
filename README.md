@@ -8,7 +8,7 @@ From spiritual places to beaches, hill stations, and wildlife – everything in 
 ## ✨ Preview
 
 ![Home](./screenshots/home.png)
-![Destinations](./screenshots/destinations.png)
+![Destinations](./screenshots/destination.png)
 ![Travel Stories](./screenshots/stories.png)
 ![Signup](./screenshots/signup.png)
 
