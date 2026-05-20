@@ -10,7 +10,7 @@ const useWishlistStore = create((set, get) => ({
     if (!token) return false;
     
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/wishlist/toggle`, {
+      const res = await axios.post(`/api/wishlist/toggle`, {
         destinationSlug: destination.slug,
         destinationName: destination.name,
         image: destination.image,
@@ -35,7 +35,7 @@ const useWishlistStore = create((set, get) => ({
     const { token } = useAuthStore.getState();
     if (!token) return;
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/wishlist/me`, {
+      const res = await axios.get(`/api/wishlist/me`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       set({ items: res.data });

@@ -26,7 +26,7 @@ const DestinationDetail = () => {
 
   useEffect(() => {
     if (destination) {
-      axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/reviews/${slug}`)
+      axios.get(`/api/reviews/${slug}`)
         .then(res => setReviews(res.data))
         .catch(err => console.error('Error fetching reviews:', err));
     }
@@ -44,7 +44,7 @@ const DestinationDetail = () => {
     
     setBookingLoading(true);
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/bookings`, {
+      await axios.post(`/api/bookings`, {
         destinationSlug: destination.slug,
         destinationName: destination.name,
         travelDate,
@@ -73,7 +73,7 @@ const DestinationDetail = () => {
     
     setReviewLoading(true);
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/reviews`, {
+      const res = await axios.post(`/api/reviews`, {
         destinationSlug: destination.slug,
         rating: newReview.rating,
         comment: newReview.comment

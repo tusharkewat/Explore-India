@@ -1,0 +1,15 @@
+{
+  "name": "explore-india",
+  "version": "1.0.0",
+  "description": "Explore India - Full Stack Travel Platform",
+  "scripts": {
+    "install-client": "npm install --prefix client",
+    "install-server": "npm install --prefix server",
+    "build-client": "npm run build --prefix client",
+    "build": "npm run install-server && npm run install-client && npm run build-client",
+    "start": "node server/index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

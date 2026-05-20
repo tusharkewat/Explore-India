@@ -12,7 +12,7 @@ const MyBookings = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/bookings/me`, {
+        const res = await axios.get(`/api/bookings/me`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setBookings(res.data);

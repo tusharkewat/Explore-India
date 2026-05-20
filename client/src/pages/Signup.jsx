@@ -17,7 +17,7 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/auth/register`, { name, email, password });
+      const res = await axios.post(`/api/auth/register`, { name, email, password });
       login(res.data.token, res.data);
       toast.success('Account created successfully!');
       navigate('/');
