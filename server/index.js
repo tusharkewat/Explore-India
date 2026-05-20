@@ -7,13 +7,27 @@ const path = require('path');
 const app = express();
 
 // Middleware
-app.use(cors({ origin: process.env.CLIENT_URL }));
+// Middleware
+const corsOrigin = process.env.CLIENT_URL || '*';
+app.use(cors({ origin: corsOrigin }));
 app.use(express.json());
 
 // Database Connection
-mongoose.connect(process.env.MONGO_URI)
+const mongoUri = process.env.MONGO_URI;
+if (!mongoUri) {
+  console.error('================================================================');
+  console.error('FATAL ERROR: MONGO_URI environment variable is not defined.');
+  console.error('Please configure MONGO_URI in your Render service settings.');
+  console.error('================================================================');
+  process.exit(1);
+}
+
+mongoose.connect(mongoUri)
   .then(() => console.log('MongoDB connected successfully'))
-  .catch(err => console.error('MongoDB connection error:', err));
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  });
 
 // Routes
 // We'll import and use routes here subsequently
