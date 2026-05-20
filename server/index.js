@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === 'production' || true) { // Set to true for easier t
   });
 } else {
   // Basic route for health check in development
-  app.get('/', (req, res) => res.send('API is running'));
+  app.get('/*', (req, res) => res.send('API is running'));
 }
 
 const PORT = process.env.PORT || 5000;
